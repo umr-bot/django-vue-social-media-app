@@ -13,8 +13,8 @@ The following is from https://www.geeksforgeeks.org/creating-python-virtual-envi
 	"A Virtual Environment is a python environment, that is an isolated working copy of Python which allows you to work on a specific project without affecting other projects
 	So basically it is a tool that enables multiple side-by-side installations of Python, one for each project."
 
-In order to use the virtual enviroment the python modulevirtualenv should be installed as follows:
-	pip install virtualenv
+In order to use the virtual enviroment the python module virtualenv should be installed as follows:
+    pip install virtualenv
 
 To create the virtual enviroment:
 	python -m venv env
