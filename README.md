@@ -35,6 +35,6 @@ You can deactivate in both Windows and Ubuntu by using the following command in 
 	deactivate
 
 ###2 Running the django app
-To run the django app from terminal,the followng commadn must be run from the proj2/ directory:
+To run the django app from terminal, the followng command should be run from the proj2/ directory:
 	python manage.py runserver
 
