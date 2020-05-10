@@ -1,5 +1,9 @@
 This application is intended to run as a web-based social network.
 
+###1 Pre-requisites for installation
+###2 Running the django app
+
+###1 Pre-requisites for installation
 To install the python requirments without a virtualenv use the following command in this directory with python pre installed:
 	pip install requirements.txt
 
@@ -29,3 +33,8 @@ For Windows:
 You can deactivate in both Windows and Ubuntu by using the following command in the terminal:
 
 	deactivate
+
+###2 Running the django app
+To run the django app from terminal,the followng commadn must be run from the proj2/ directory:
+	python manage.py runserver
+
