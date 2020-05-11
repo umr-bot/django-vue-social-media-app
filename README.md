@@ -8,16 +8,8 @@ Docker has to be pre installed for the application to run. Follow the offical do
 
 ###2 Running the django app
 To run the django app from terminal,the followng commmands should be run:
-<<<<<<< HEAD
 	
 	docker-compose build
 	docker-compose up -d
 	docker-compose run web python manage.py migrate
 	docker-compose run web python manage.py runserver
-=======
-
-        docker-compose build
-        docker-compose up -d
-        docker-compose run web python manage.py migrate
-        docker-compose run web python manage.py runserver
->>>>>>> 2604a5c239e1a90b2f8119ad8ad7c6a7fd45560c
