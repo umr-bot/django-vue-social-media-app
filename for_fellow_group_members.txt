@@ -1,3 +1,10 @@
 If anyone makes changes to a files in the group1_server files then the changes will only take eefect after running the command:
 	python manage.py migrations
 Then if you run python manage.py runserver you can see your changes.
+
+Also note that the files in group1_server/proj2 is the core of the application where the settings are defined and where all apps are routed to in the urls.py file.
+If you want to add another app (an app is jus another component/functionality to the applicatin eg. accounts, posts, profiles ...) then the command:
+
+	python manage.py startapp 'appname'
+
+should be run to make a new folder containing default files with the folder name being 'appname'. Then to connect the app to the core folder proj2 you must  create and edit a file named urls.py in the 'appname' folder that you previously created and place in it a url pattern (details can be found in djangos documentaion, just Google it) like in the already created accounts/urls.py file.
