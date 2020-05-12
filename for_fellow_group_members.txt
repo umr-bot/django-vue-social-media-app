@@ -7,4 +7,14 @@ If you want to add another app (an app is jus another component/functionality to
 
 	python manage.py startapp 'appname'
 
-should be run to make a new folder containing default files with the folder name being 'appname'. Then to connect the app to the core folder proj2 you must  create and edit a file named urls.py in the 'appname' folder that you previously created and place in it a url pattern (details can be found in djangos documentaion, just Google it) like in the already created accounts/urls.py file.
+should be run to make a new folder containing default files with the folder name being 'appname'.
+Then to connect have an html file displayed from that component you can create 
+and edit a file named urls.py in the 'appname' folder that you previously created
+and place in it a url pattern (details can be found in djangos documentaion, 
+just Google it) like in the already created accounts/urls.py file. It looks like this:
+	urlpatterns = [path('', views.index, name='index'),]
+
+where views refers to the views.py file in the 'appname' folder . Index is a 
+function in that views.py file that returns an html response file just like Flask the template_render function. The name = 'index' is just a label variable to 
+keep track of the path so it does not need to have the same name as the function
+being called, the fucntio in this case being index in the views.py file.
