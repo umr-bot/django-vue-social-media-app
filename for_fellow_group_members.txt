@@ -1,0 +1,3 @@
+If anyone makes changes to a files in the group1_server files then the changes will only take eefect after running the command:
+	python manage.py migrations
+Then if you run python manage.py runserver you can see your changes.
