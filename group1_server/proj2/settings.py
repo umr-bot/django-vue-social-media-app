@@ -75,15 +75,22 @@ WSGI_APPLICATION = 'proj2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        "DEFAULT-CHARACTER-SET": 'utf8',
-        'HOST': '',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+## Uncomment the following to instead of sqlite us postgresql
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'password',
+#        "DEFAULT-CHARACTER-SET": 'utf8',
+#        'HOST': '',
+#        'PORT': 5432,
+#    }
+#}
 
 
 # Password validation
