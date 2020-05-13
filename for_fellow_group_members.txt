@@ -1,9 +1,10 @@
 If anyone makes changes to database files in the group1_server files then the changes will only take effect after running the command:
 	python manage.py migrations
 Then if you run python manage.py runserver you can see your changes.
+For now sqlite is set to be used in the proj2/settings.py file. But later after having made more changes to the application we will use postgresql
 
 Also note that the files in group1_server/proj2 is the core of the application where the settings are defined and where all apps are routed to in the urls.py file.
-If you want to add another app (an app is jus another component/functionality to the applicatin eg. accounts, posts, profiles ...) then the command:
+If you want to add another app (an app is just another component/functionality to the applicatin eg. accounts, posts, profiles ...) then the command:
 
 	python manage.py startapp 'appname'
 
