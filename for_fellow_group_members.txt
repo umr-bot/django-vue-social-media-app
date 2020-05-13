@@ -1,4 +1,4 @@
-If anyone makes changes to a files in the group1_server files then the changes will only take eefect after running the command:
+If anyone makes changes to database files in the group1_server files then the changes will only take effect after running the command:
 	python manage.py migrations
 Then if you run python manage.py runserver you can see your changes.
 
@@ -18,3 +18,5 @@ where views refers to the views.py file in the 'appname' folder . Index is a
 function in that views.py file that returns an html response file just like Flask the template_render function. The name = 'index' is just a label variable to 
 keep track of the path so it does not need to have the same name as the function
 being called, the fucntio in this case being index in the views.py file.
+
+PLease check https://docs.djangoproject.com/en/3.0/intro/tutorial01/ for details on how the base code was generated and https://docs.djangoproject.com/en/3.0/intro/tutorial02/ to see how the database settings were chosen.
