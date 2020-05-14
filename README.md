@@ -5,6 +5,8 @@ This repositry contains code to run a social media application with django
 Make sure to install the python requiremnts with:
 	pip install requirements.txt
 Another requirement is that postgresql is installed. Postgres installation instructions can be found at https://www.postgresql.org/
+For the channel system for the instantaneous message chat system the software redis must be installed.
+Details on installation of redis can be found at https://redis.io/
 
 ###Running the application
 
