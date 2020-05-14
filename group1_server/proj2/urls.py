@@ -18,8 +18,9 @@ from django.urls import include, path
 from django.conf.urls import include
 
 urlpatterns = [
-    path('social_media_app/', include('social_media_app.urls')),
-    path('chat/', include('chat.urls')),
+    path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
+    path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
+    path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]
