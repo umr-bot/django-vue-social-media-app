@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 
 Here we set up the mapping of different urls so that they can be handled in a different way
+Tell's the whole website which urls should send us to our social media app
 """
 
 """
@@ -32,9 +33,9 @@ from django.urls import include, path
 from django.conf.urls import include
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
     path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
     path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
-    path('accounts/', include('accounts.urls')),
-    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls'))  
 ]

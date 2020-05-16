@@ -35,15 +35,16 @@ ALLOWED_HOSTS = []
 # Application definition
 # Holds the names of all Django applications that are activated in this Django instance.
 INSTALLED_APPS = [
+    'social_media_app.apps.SocialMediaAppConfig', # path to app configuraion
     'profiles',
     'channels',
     'chat',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin',         # The admin site
+    'django.contrib.auth',          # An authentication system
+    'django.contrib.contenttypes',  # A framework for content types
+    'django.contrib.sessions',      # A session framework
+    'django.contrib.messages',      # A messaging framework
+    'django.contrib.staticfiles',   # A framework for managing static files
 ]
 # When adding new apps, run the command: Python manage.py migrate
 # This creates any necessary database tables according to the database settings
