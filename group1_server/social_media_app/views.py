@@ -2,20 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 #this will be replaced by the code for the POSTS
-posts = [
+user_posts = [
 	{
 		'user': 'Lizane Botha',
-		'post': 'yo',
+		'content': 'yo',
 		'caption': 'lol',
-		#'categories': ['new, dumb, help'],
-		'date_posted': '16 May 2020'
+		'date_posted': '16 May 2020',
+		'categories': ['new', 'dumb', 'help']
 	},
 	{
 		'user': 'Tharun Thomas',
-		'post': 'yo dog',
+		'content': 'yo dog',
 		'caption': 'idk',
-		#'categories': ['new, boy, firstpost'],
-		'date_posted': '16 May 2020'
+		'date_posted': '16 May 2020',
+		'categories': ['new', 'boy', 'firstpost']
 	}
 ]
 
@@ -26,14 +26,14 @@ def home(request):
 
 def about(request):
 	#return render(request, 'about.html')
-	return render(request, 'about.html')
+	return render(request, 'about.html', {'title' : 'about'})
 
-def posts(request):
+def posts_page(request):
 	context = {
-		'posts': posts # the dictionary at the top is passed in
+		'posts': user_posts # the dictionary at the top is passed in
 	}
 	return render(request, 'posts.html', context) # passes 'context' into the template, and let's us access it within the template
 
 def groups(request):
 	#return render(request, 'about.html')
-	return render(request, 'groups.html')
+	return render(request, 'groups.html', {'title' : 'groups'})
