@@ -1,8 +1,15 @@
 <template>
-	<div id="post-item" class="post-item" v-bind:class="{'is-saved':post.saved}">
+<!-- 	<div id="post-item" class="post-item" v-bind:class="{'is-saved':post.saved}">
 		<small><b>{{post.username}}</b></small><br>
 		<p>{{post.content}}</p><br>
 		<small>{{post.date_posted}}</small><br><br>
+		<button id="save_post_Button" @click="markSaved(),changeSaveLabel()" class="save">save</button>
+	</div> -->
+	<!-- JSONplaceholder format -->
+		<div id="post-item" class="post-item">
+		<small><b>{{post.userId}}</b></small><br>
+		<p>{{post.body}}</p><br>
+		<small>{{post.title}}</small><br><br>
 		<button id="save_post_Button" @click="markSaved(),changeSaveLabel()" class="save">save</button>
 	</div>
 </template>
