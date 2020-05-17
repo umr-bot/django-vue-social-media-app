@@ -1,9 +1,9 @@
 <template>
-	<div class="post-item" v-bind:class="{'is-saved':post.saved}">
+	<div id="post-item" class="post-item" v-bind:class="{'is-saved':post.saved}">
 		<small><b>{{post.username}}</b></small><br>
-		<large>{{post.content}}</large><br>
+		<p>{{post.content}}</p><br>
 		<small>{{post.date_posted}}</small><br><br>
-		<button @click="markSaved(post.id)" class="save" id="save_post_Button">{{ value='save' }}</button>
+		<button id="save_post_Button" @click="markSaved(),changeSaveLabel()" class="save">save</button>
 	</div>
 </template>
 
@@ -14,9 +14,15 @@ export default {
 	methods: {
 		markSaved() {
 			this.post.saved = !this.post.saved;
-			var elem= document.getElementById("save_post_Button");
-			if (elem.value=="save") elem.value="unsave";
-			else elem.value="save";
+		},
+		changeSaveLabel() {
+			var elem= document.getElementById('save_post_Button');
+			console.log(elem.id);
+			console.log(elem.innerHTML);
+			if (this.post.saved=="save") 
+				document.getElementById('save_post_Button').innerHTML="unsave";
+			else 
+				document.getElementById('save_post_Button').innerHTML="save";
 		}
 
 	}

@@ -2,7 +2,7 @@
 	<div>
 		<h1>Posts</h1>
 		<div v-bind:key="post.id" v-for="post in posts">
-			<PostItem v-bind:post="post" />
+			<PostItem v-bind:post="post" v-on:markSaved="saved_post(post.id)"/>
 		</div>
 	</div>
 </template>
