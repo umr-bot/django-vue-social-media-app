@@ -1,14 +1,14 @@
 <template>
   <div id="home">
     <!-- <img alt="logo" src="../assets/covid19_response_icon.svg" width="400" height="80"> -->
-    <Header />
+    <!-- <Header /> -->
     <AddPost v-on:add-post="addPost"/>
     <posts v-bind:posts="posts" v-on:markSaved="saved_post(post.id)"/>
   </div>
 </template>
 
 <script>
-import Header from '../components/layout/header';
+//import Header from '../components/layout/header';
 import posts from '../components/posts';
 import AddPost from '../components/AddPost';
 import axios from 'axios';
@@ -16,7 +16,7 @@ import axios from 'axios';
 export default {
   name: 'Home',
   components: {
-    Header,
+    //Header,
     posts,
     AddPost
 
