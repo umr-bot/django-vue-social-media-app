@@ -28,14 +28,20 @@ Tell's the whole website which urls should send us to our social media app
                 especially from within templates.
 """
 
-from django.contrib import admin
-from django.urls import include, path
-from django.conf.urls import include
+# from django.contrib import admin
+# from django.urls import include, path
+# from django.conf.urls import include
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
+#     path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
+#     path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
+#     path('accounts/', include('accounts.urls'))  
+# ]
+from django.conf.urls import url #,include
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
-    path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
-    path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
-    path('accounts/', include('accounts.urls'))  
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index')
 ]
