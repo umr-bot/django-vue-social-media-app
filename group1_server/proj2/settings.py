@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',      # A session framework
     'django.contrib.messages',      # A messaging framework
     'django.contrib.staticfiles',   # A framework for managing static files
+    'social_media_app',              #add app 
+    'webpack_loader',
 ]
 # When adding new apps, run the command: Python manage.py migrate
 # This creates any necessary database tables according to the database settings
@@ -150,4 +152,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static'
+
+
+#adding assers folder as on of the directories Django should check for static files
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'),
+)
+
+#initializing webpack_loader settings, which will dirct the loader to the directory of the assets
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': '../assets/bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
