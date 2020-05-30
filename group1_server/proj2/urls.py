@@ -12,15 +12,36 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+
+Here we set up the mapping of different urls so that they can be handled in a different way
+Tell's the whole website which urls should send us to our social media app
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.conf.urls import include
+
+"""
+    path(route,view,kwargs,name)
+    -- route:   a string that contains a URL pattern
+    -- view:    when Django finds a matching pattern, it calls the specified view functon
+                --> The logic within this location handles the route further
+    -- kwargs:  Arbitrary keyword arguments can be passed in  dictionary to the taget view
+                (optional)
+    -- name:    Naming your URL lets you refer to it unambiguously from elsewhere in Django, 
+                especially from within templates.
+"""
+
+# from django.contrib import admin
+# from django.urls import include, path
+# from django.conf.urls import include
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
+#     path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
+#     path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
+#     path('accounts/', include('accounts.urls'))  
+# ]
+from django.conf.urls import url #,include
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', include('social_media_app.urls')), # This points the root url localhost:8000/ to homepage
-    path('social_media_app/', include('social_media_app.urls')), # This points the explicit url of localhost:8000/social_media_app to homepage
-    path('chat/', include('chat.urls')), # Works same as homepage root url pointer above
-    path('accounts/', include('accounts.urls')),
-    path('admin/', admin.site.urls),
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index')
 ]

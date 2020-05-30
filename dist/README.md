@@ -1,0 +1,1 @@
+To run the client side server, type npm serve -s dist in the directory where the dist folder is contained. This requires Node.js installed on your computer.

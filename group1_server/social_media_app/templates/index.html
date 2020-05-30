@@ -1,0 +1,13 @@
+{% load render_bundle from webpack_loader %} <!-- this loads the loader into the template -->
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>My Django Vue</title>
+	</head>
+	<body>
+	    <div id="app"> <!-- where the Vue.js app will be initialized -->
+	        <demo></demo> <!-- where our Demo.vue component will be loaded -->
+	    </div>
+	    {% render_bundle 'main' %} <!-- will load the build output of webpack into our template -->
+	</body>
+</html>
