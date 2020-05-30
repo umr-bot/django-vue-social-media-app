@@ -34,8 +34,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 # Holds the names of all Django applications that are activated in this Django instance.
-#'social_media_app.apps.SocialMediaAppConfig', # path to app configuraion
 INSTALLED_APPS = [
+    'social_media_app.apps.SocialMediaAppConfig', # path to app configuraion
     'profiles',
     'channels',
     'chat',
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',      # A session framework
     'django.contrib.messages',      # A messaging framework
     'django.contrib.staticfiles',   # A framework for managing static files
-    'social_media_app',              #add app
+    'social_media_app',              #add app 
     'webpack_loader',
 ]
 # When adding new apps, run the command: Python manage.py migrate
@@ -152,7 +152,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static'
 
 
 #adding assers folder as on of the directories Django should check for static files
