@@ -13,10 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = Userfields = ('id','username','password')
         extra_kwargs = {'password':{'required':True, 'write_only':True}}
 
-        def create(self, validted_data): # we need to assign token to a user to validate user for frontend
-            user = User.objects.create_user(**validated_data)
-            Token.objects.create(user=user)
-            return user
+    def create(self, validted_data): # we need to assign token to a user to validate user for frontend
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+        return user
 
 
 class PostSerializer(serializers.ModelSerializer):
