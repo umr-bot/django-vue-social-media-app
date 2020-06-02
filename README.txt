@@ -1,4 +1,9 @@
 
+Modules to install:
+
+Corsheaders
+rest_framework
+
 
 How to get frontend to work with backend:
 
@@ -17,3 +22,4 @@ How to get frontend to work with backend:
     "http://127.0.0.1:8000/api/yoururlhere/"
 
 6. Make sure after you change any of the models to makemigrate and migrate 
+
