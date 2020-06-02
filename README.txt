@@ -15,3 +15,5 @@ How to get frontend to work with backend:
 
 5. In the corresponding Vue Component, send POST and GET to backend via axios to the API url:
     "http://127.0.0.1:8000/api/yoururlhere/"
+
+6. Make sure after you change any of the models to makemigrate and migrate 
