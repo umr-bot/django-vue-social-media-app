@@ -4,8 +4,8 @@ from rest_framework import routers
 from .views import UserViewSet, PostViewSet
 
 router = routers.DefaultRouter()
-router.register('Register',UserViewSet)
-router.register('Post',PostViewSet)
+router.register(r'Register',UserViewSet)
+router.register(r'Post',PostViewSet)
 
 urlpatterns = [
     path('',include(router.urls))
