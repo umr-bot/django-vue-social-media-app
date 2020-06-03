@@ -5,8 +5,9 @@
 <small>The app that connects you to the world when Covid has you stuck in one place.</small>
 <div id="nav">
 | <router-link to="/">Home</router-link>|
-  <router-link to="/Posts">Posts</router-link>
-  <router-link to="/Register">Register</router-link>
+  <router-link to="/Posts">Posts</router-link>|
+  <router-link to="/Register">Register</router-link>|
+  <router-link to="/Login">Login</router-link>|  
 <!-- <router-link to="/about">About</router-link>|
 <router-link to="/groups">Groups</router-link>|
 <router-link to="/login">Login/Register</router-link>|
