@@ -1,5 +1,7 @@
 <template>
-  <div class="home">
+  <div>
+    <router-link to="/Login">Login</router-link>| 
+    <router-link to="/Register">Register</router-link>|
   </div>
 </template>
 
