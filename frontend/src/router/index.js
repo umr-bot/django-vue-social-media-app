@@ -1,10 +1,12 @@
+//This is where our routes are created
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Posts from '../components/Posts.vue'
+import Groups from '../views/Groups.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
-import Logout from '../components/Logout.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -23,9 +25,9 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/Posts',
-    name: 'Posts',
-    component: Posts
+    path: '/groups',
+    name: 'Groups',
+    component: Groups
   },
   {
     path: '/Register',
@@ -38,12 +40,19 @@ Vue.use(VueRouter)
     component: Login
   },
   {
+<<<<<<< HEAD
     path: '/Logout',
     name: 'Logout',
     component: Logout
 
   },
  
+=======
+    path: '/user',
+    name: 'Profile',
+    component: Profile
+  }
+>>>>>>> James_Branch
 
 ]
 

@@ -1,44 +1,60 @@
 <template>
-  <div class="">
-
+  <div>
+      <h3>Posts</h3>
+      <div class="posts">
+            <div v-for="post in allPosts" :key="post.id" class="post" @click.self="setIsOpen(post.id)">
+                Text: {{ post.content }}
+                <div class="comments">
+                    <AddComment :parentData="post.id" />
+                    <transition-group name="fade">
+                        <div v-for="comment in allComments" :key="comment.commentid">
+                            <p v-if="comment.postid == post.id && comment.isOpen == true"> {{comment.text}} </p>
+                        </div>
+                    </transition-group>
+                </div>
+            </div>
+      </div>
   </div>
 </template>
 
-
-
 <script>
-import axios from 'axios'
-import Header from '@/components/Header.vue'
+import { mapGetters, mapActions } from 'vuex';
+import AddComment from './AddComment'
 
 export default {
-    name: 'Posts',
-    components:{    
-
+    name: "Posts",
+    components: {
+        AddComment
     },
-    data(){
-        return{
-            posts : [],
-            username : '',
-        }       
+    methods: {
+        ...mapActions(['fetchPosts', 'setIsOpen'])
     },
-    methods:{
-        getPosts(){
-            axios.get("http://127.0.0.1:8000/api/Post/")
-            .then(res =>(this.posts = res.data))
-            .catch(err => console.log(err));
-        },
-        getUser(){
-            axios.get("http://127.0.0.1:8000/api/Register/")
-            .then(res =>(this.username = res.username))
-            .catch(err => console.log(err));
-        }
-
-    },
-    created(){
-        this.getPosts()
-        this.getUser()
-
+    computed: mapGetters(['allPosts', 'allComments']),
+    created() {
+        this.fetchPosts();
     }
 }
 </script>
 
+<style scoped>
+.posts {
+    display: block;
+    border: solid #ccc 2pt;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+}
+
+.post {
+    border: 1px solid #2c3e50;
+    background: #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.comments {
+    border: solid #ccc 2pt;
+    background: #ccc;
+}
+</style>

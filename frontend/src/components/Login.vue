@@ -15,9 +15,7 @@
                   </p>
 
         </form>
-        <h3> Not Registered? Register <router-link to="/Register">Here</router-link></h3>
   </div>
-
 </template>
 
 <script>
