@@ -15,7 +15,9 @@
                   </p>
 
         </form>
+        <h3> Not Registered? Register <router-link to="/Register">Here</router-link></h3>
   </div>
+
 </template>
 
 <script>
@@ -34,23 +36,23 @@ export default {
   },
   methods: {
     LoginUser() {
-      axios.post('http://127.0.0.1:8000/auth/', {
+      axios.post('http://127.0.0.1:8000/api-login/login/', {
         username: this.username,
         password: this.password
       })
-       .then(resp => {
+       .then(resp => console.log(resp))
         
-      this.token = resp.data.token;
-      console.log(this.token)
-      localStorage.setItem('user-token', resp.data.token)
-      })
+/*       //this.token = resp.data.token;
+     // console.log(this.token)
+      //localStorage.setItem('user-token', resp.data.token)
+      //})
       .catch(err => {
         localStorage.removeItem('user-token')
-      })
-     
- 
+      }),
+      this.$router.push('/Posts')
+  */
     }
-  },
+  }
 }
 
 </script>
