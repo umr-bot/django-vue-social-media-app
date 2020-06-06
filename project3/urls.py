@@ -15,12 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import include 
+from django.conf.urls import include, url
 from rest_framework.authtoken.views import obtain_auth_token
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include('api.urls')),
+    path('api/', include('api.urls') ),
     path(r'auth/',obtain_auth_token),
-    path('api-login/',include('rest_framework.urls'))
+    path('api-login/',include('rest_framework.urls') ),
+    # JWT auth
+    url(r'^api/v1/auth/obtain_token/', obtain_jwt_token),
+    url(r'^api/v1/auth/refresh_token/', refresh_jwt_token),
+    # The rest of the endpoints
+    #url(r'^api/v1/', include('project3.urls', namespace='apiv1')),
+    url(r'^api-token-verify/', verify_jwt_token)
 ]

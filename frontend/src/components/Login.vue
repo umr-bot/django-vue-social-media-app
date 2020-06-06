@@ -1,58 +1,89 @@
-<template>
-  <div class="">
-    <h1>User Login</h1>
-      <form @submit.prevent="LoginUser">
-                  <p>
-                    <label for="username">Username </label>
-                    <input id="username" class="mr-sm-2" v-model="username" placeholder="username" name="username">
-                  </p>
-                  <p>
-                    <label for="password">password </label>
-                    <input id="password" class="mr-sm-2" placeholder="password" type="password" v-model="password" name="password" >
-                  </p>
-                  <p>
-                    <input type="submit" value="Submit">  
-                  </p>
-
-        </form>
-        <h3> Not Registered? Register <router-link to="/Register">Here</router-link></h3>
-  </div>
-
+<template lang="html">
+  <form class="login form">
+    <div class="field">
+      <label for="id_username">Username</label>
+      <input
+        v-model="username"
+        type="text"
+        placeholder="Username"
+        autofocus="autofocus"
+        maxlength="150"
+        id="id_username">
+    </div>
+    <div class="field">
+      <label for="id_password">Password</label>
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Password"
+        id="id_password">
+    </div>
+    <button
+      @click.prevent="authenticate"
+      class="button primary"
+      type="submit">
+      Log In
+    </button>
+  </form>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
-  name: 'Login',
-  components: {
-    
-  },
-  data() {
+  data () {
     return {
-   username:'',
-   password:'',
+      username: '',
+      password: ''
     }
   },
   methods: {
-    LoginUser() {
-      axios.post('http://127.0.0.1:8000/api-login/login/', {
+    authenticate () {
+      const payload = {
         username: this.username,
         password: this.password
-      })
-       .then(resp => console.log(resp))
-        
-/*       //this.token = resp.data.token;
-     // console.log(this.token)
-      //localStorage.setItem('user-token', resp.data.token)
-      //})
-      .catch(err => {
-        localStorage.removeItem('user-token')
-      }),
-      this.$router.push('/Posts')
-  */
+      }
+      axios.post(this.$store.state.endpoints.obtainJWT, payload)
+        .then((response) => {
+          this.$store.commit('updateToken', response.data.token)
+          // get and set auth user
+          const base = {
+            baseURL: this.$store.state.endpoints.baseUrl,
+            headers: {
+            // Set your Authorization to 'JWT', not Bearer!!!
+              Authorization: `JWT ${this.$store.state.jwt}`,
+              'Content-Type': 'application/json'
+            },
+            xhrFields: {
+                withCredentials: true
+            }
+          }
+          // Even though the authentication returned a user object that can be
+          // decoded, we fetch it again. This way we aren't super dependant on
+          // JWT and can plug in something else.
+          const axiosInstance = axios.create(base)
+          axiosInstance({
+            url: "/user/",
+            method: "get",
+            params: {}
+          })
+            .then((response) => {
+              this.$store.commit("setAuthUser",
+                {authUser: response.data, isAuthenticated: true}
+              )
+              this.$router.push({name: 'Home'})
+            })
+
+        })
+        .catch((error) => {
+          console.log(error);
+          console.debug(error);
+          console.dir(error);
+        })
     }
   }
 }
-
 </script>
+
+<style lang="css">
+</style>
