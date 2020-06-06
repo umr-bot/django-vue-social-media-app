@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\ADT\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
+    "python.pythonPath": "C:\\Users\\ADT\\AppData\\Local\\Programs\\Python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "git.ignoreLimitWarning": true

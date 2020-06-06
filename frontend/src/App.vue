@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
+import Header from '@/components/layout/Header.vue'
 
 export default {
   name: 'app',
@@ -17,6 +17,7 @@ export default {
   }
 }
 </script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,6 +34,7 @@ export default {
 #nav a {
   font-weight: bold;
   color: #42b983;
+  /* color: #fff; */
 }
 
 #nav a.router-link-exact-active {

@@ -1,38 +1,60 @@
 <template>
-  <div class="">
-      This is the posts
-      <!-- <p v-bind:key = "post.id" v-for="post in posts">
-          <div>{{post.content}}</div>
-          <br>
-          <h1>{{post.user}}</h1>
-      </p> -->
+  <div>
+      <h3>Posts</h3>
+      <div class="posts">
+            <div v-for="post in allPosts" :key="post.id" class="post" @click.self="setIsOpen(post.id)">
+                Text: {{ post.content }} <br><br>
+                <div class="comments">
+                    <AddComment :parentData="post.id" /> <br>
+                    <transition-group name="fade">
+                        <div v-for="comment in post.comments" :key="comment.id">
+                            <p v-if="comment.isOpen == true"> {{comment.content}} </p>
+                        </div>
+                    </transition-group>
+                </div>
+            </div>
+      </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex';
+import AddComment from './AddComment'
 
 export default {
-    name: 'Posts',
-    components:{    
-
+    name: "Posts",
+    components: {
+        AddComment
     },
-    data(){
-        return{
-            posts : []
-        }       
+    methods: {
+        ...mapActions(['fetchPosts', 'setIsOpen'])
     },
-    methods:{
-        getPosts(){
-            axios.get("http://127.0.0.1:8000/api/Post/")
-            .then(res =>(this.posts = res.data))
-            .catch(err => console.log(err));
-        }
-
-    },
-    created(){
-        this.getPosts()
+    computed: mapGetters(['allPosts']),
+    created() {
+        this.fetchPosts();
     }
 }
 </script>
 
+<style scoped>
+.posts {
+    display: block;
+    border: solid #ccc 2pt;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+}
+
+.post {
+    border: 1px solid #2c3e50;
+    background: #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.comments {
+    border: solid #ccc 2pt;
+    background: #ccc;
+}
+</style>
