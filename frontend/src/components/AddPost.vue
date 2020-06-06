@@ -3,7 +3,6 @@
         <h3>Add Post</h3>
         <div class="add">
             <form @submit="onSubmit">
-                <input type="text" v-model="title" placeholder="Add title...">
                 <input type="text" v-model="content" placeholder="Add text...">
                 <input type="submit" value="Submit">
             </form>
@@ -18,16 +17,17 @@ export default {
     name: "AddPost",
     data() {
         return {
-            title: "",
-            content: ""
+            content: "",
+            location: "",
+            category: "",
+            groupID: null
         }
     },
     methods: {
-        ...mapActions(['addPost', 'updateCommentPostID']),
+        ...mapActions(['addPost']),
         onSubmit(e) {
             e.preventDefault();
-            this.updateCommentPostID();
-            this.addPost({userID: 1, title: this.title, content: this.content});
+            this.addPost({user: 1, content: this.content, location: this.location, category: this.category, groupID: this.groupID});
         }
     }
 }

@@ -1,7 +1,6 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 import posts from './modules/posts';
-import comments from './modules/comments';
 
 // Load Vuex
 Vue.use(Vuex);
@@ -15,19 +14,19 @@ Vue.use(Vuex);
 //});
 
 ///////////  The following code is to make jwt authorization work
-import axios from 'axios'
+import axios from 'axios';
 
 //Vue.use(Vuex)
 
 // Make Axios play nice with Django CSRF
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 export default new Vuex.Store({
   modules: {
-      posts,
-      comments
+     posts
   },
+
   state: {
     authUser: {},
     isAuthenticated: false,
