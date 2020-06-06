@@ -21,7 +21,24 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  components: {
+
+  },
+  data() {
+    return{
+      token: localStorage.getItem('user-token') || null,
+    }
+  },
+  methods:{
+    logout() {
+      localStorage.removeItem('user-token');
+      this.token = null;
+    },
+  },
+  created() {
+    //this.token = TokenService.getToken() || null;
+  }
 }
 </script>
 

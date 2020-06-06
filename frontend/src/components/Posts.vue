@@ -3,12 +3,12 @@
       <h3>Posts</h3>
       <div class="posts">
             <div v-for="post in allPosts" :key="post.id" class="post" @click.self="setIsOpen(post.id)">
-                Text: {{ post.content }}
+                Text: {{ post.content }} <br><br>
                 <div class="comments">
-                    <AddComment :parentData="post.id" />
+                    <AddComment :parentData="post.id" /> <br>
                     <transition-group name="fade">
-                        <div v-for="comment in allComments" :key="comment.commentid">
-                            <p v-if="comment.postid == post.id && comment.isOpen == true"> {{comment.text}} </p>
+                        <div v-for="comment in post.comments" :key="comment.id">
+                            <p v-if="comment.isOpen == true"> {{comment.content}} </p>
                         </div>
                     </transition-group>
                 </div>
@@ -29,7 +29,11 @@ export default {
     methods: {
         ...mapActions(['fetchPosts', 'setIsOpen'])
     },
+<<<<<<< HEAD
     computed: mapGetters(['allPosts', 'allComments']),
+=======
+    computed: mapGetters(['allPosts']),
+>>>>>>> origin/master
     created() {
         this.fetchPosts();
     }

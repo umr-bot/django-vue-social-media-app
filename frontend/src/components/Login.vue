@@ -18,6 +18,7 @@
         </form>
         <small>Need an account? Register <router-link to="/Register">Here</router-link></small>
   </div>
+
 </template>
 
 <script>
