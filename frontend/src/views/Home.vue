@@ -3,6 +3,7 @@
     <div class="container">
       <AddPost />
       <FilterPosts />
+      <br>
       <Posts/>
     </div>
   </div>

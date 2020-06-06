@@ -37,7 +37,7 @@ export default {
     },
   },
   created() {
-    this.token = TokenService.getToken() || null;
+    //this.token = TokenService.getToken() || null;
   }
 }
 </script>

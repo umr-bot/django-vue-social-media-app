@@ -3,7 +3,7 @@
         Add Comment
         <div class="addComment">
             <form @submit="onSubmit">
-                <input type="text" v-model="text" placeholder="Add text...">
+                <input type="text" v-model="content" placeholder="Add text...">
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -25,14 +25,14 @@ export default {
     },
     data() {
         return {
-            text: ""
+            content: ""
         }
     },
     methods: {
         ...mapActions(['addComment']),
         onSubmit(e) {
             e.preventDefault();
-            this.addComment({text: this.text, postID: this.parentData});
+            this.addComment({content: this.content, postID: this.parentData, user: 1});
         }
     }
 }
