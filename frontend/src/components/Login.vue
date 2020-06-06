@@ -2,6 +2,7 @@
   <div class="">
     <h1>User Login</h1>
       <form @submit.prevent="LoginUser">
+      
                   <p>
                     <label for="username">Username </label>
                     <input id="username" class="mr-sm-2" v-model="username" placeholder="username" name="username">
@@ -15,11 +16,13 @@
                   </p>
 
         </form>
+        <small>Need an account? Register <router-link to="/Register">Here</router-link></small>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 
 export default {
   name: 'Login',
@@ -31,13 +34,18 @@ export default {
    username:'',
    password:'',
     }
-  },
+  }, 
   methods: {
     LoginUser() {
-      axios.post('http://127.0.0.1:8000/api-login/login/', {
+      const headers = {"X-CSRFTOKEN": "CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz"}
+      axios.post("http://127.0.0.1:8000/api-login/login/",
+       {
         username: this.username,
         password: this.password
-      })
+       }, 
+       {
+         headers: headers
+         })
        .then(resp => console.log(resp))
         
 /*       //this.token = resp.data.token;
@@ -50,7 +58,10 @@ export default {
       this.$router.push('/Posts')
   */
     }
-  }
+  },
+
+
+
 }
 
 </script>

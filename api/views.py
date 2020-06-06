@@ -4,10 +4,11 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .serializers import UserSerializer, PostSerializer
+from django.views.decorators.csrf import csrf_exempt
+from .serializers import UserSerializer, PostSerializer, ProfileSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import viewsets, status
-from .models import Post
+from .models import Post, Profile
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -15,11 +16,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer_class = UserSerializer 
         permission_classes = (AllowAny, )
 
-        def get(self, request):
-            if request.user.is_authenticated:
-                return Response(request.user.username)
-
-
+ 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -27,7 +24,17 @@ class PostViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
+    def get_queryset(self):
+        if self.action == 'list':
+            return self.queryset.filter(user=self.request.user)
+        return self.queryset
+
+
+""" @csrf_exempt
 def Login_view(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -37,4 +44,4 @@ def Login_view(request):
         return (request, user.username)
     else:
         # Return an 'invalid login' error message.
-        return (request)
+        return (request) """

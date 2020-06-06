@@ -9,6 +9,9 @@ Vue.use(BootstrapVue)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store/index.js'
+import axios from 'axios'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+axios.defaults.xsrfCookieName = "csrftoken"
 
 Vue.config.productionTip = false
 

@@ -1,16 +1,10 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <router-link to="/Login">Login</router-link>| 
-    <router-link to="/Register">Register</router-link>|
-=======
   <div class="home">
     <div class="container">
       <AddPost />
       <FilterPosts />
       <Posts/>
     </div>
->>>>>>> James_Branch
   </div>
 </template>
 
