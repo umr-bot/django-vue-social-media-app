@@ -43,17 +43,17 @@ export default {
         username: this.username,
         password: this.password
        })
-       .then(resp => console.log(resp))
+       .then(resp => {
         
-/*       //this.token = resp.data.token;
-     // console.log(this.token)
-      //localStorage.setItem('user-token', resp.data.token)
-      //})
+      this.token = resp.data.token;
+      console.log(this.token)
+      localStorage.setItem('user-token', resp.data.token)
+      })
       .catch(err => {
         localStorage.removeItem('user-token')
       }),
       this.$router.push('/Posts')
-  */
+ 
     }
   },
 

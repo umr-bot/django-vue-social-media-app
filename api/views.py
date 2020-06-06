@@ -18,8 +18,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
         @action(detail=True)
         def get_queryset(self):
+            return None
             
-            return self
 
  
 

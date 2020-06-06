@@ -1,7 +1,7 @@
 <template>
     <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <img class="rounded-circle account-img" src="">
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
@@ -37,7 +37,15 @@ export default {
 
   },
   mounted() {
-      axios.get('http://127.0.0.1:8000/api/Profile/'
+      axios.get('http://127.0.0.1:8000/api/Profile/')
+      .then(resp => {
+        
+      this.username = resp.username;
+      this.image = resp.
+      console.log(this.token)
+      localStorage.setItem('user-token', resp.data.token)
+      })
+
 
   },
     
