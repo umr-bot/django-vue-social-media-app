@@ -1,15 +1,13 @@
 <template>
   <div class="">
       This is the posts
-      <p v-bind:key = "post.id" v-for="post in posts">
+      <!-- <p v-bind:key = "post.id" v-for="post in posts">
           <div>{{post.content}}</div>
           <br>
           <h1>{{post.user}}</h1>
-      </p>
+      </p> -->
   </div>
 </template>
-
-
 
 <script>
 import axios from 'axios'

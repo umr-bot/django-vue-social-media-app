@@ -1,9 +1,20 @@
 
-Modules to install:
+How to work on this:
+for the following installations through the cmd line -- require pip and npm
 
+Requirements - BACKEND
+django
+--> pip install Django
+djangorestframework
+--> pip install djangorestframework
 Corsheaders
-rest_framework
+--> python -m pip install django-cors-headers
 
+Requirements - FRONTEND
+Vue
+--> npm install vue
+Vue CLI
+--> npm install -g @vue/cli
 
 How to get frontend to work with backend:
 

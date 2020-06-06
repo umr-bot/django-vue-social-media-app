@@ -3,14 +3,14 @@
 <div class="center">
 <h1>gotY<img src="../assets/covid19.png" class="logo" alt="" height="70" width="70" />Ucovid</h1>
 <small>The app that connects you to the world when Covid has you stuck in one place.</small>
-<div id="nav">
-| <router-link to="/">Home</router-link>|
-  <router-link to="/Posts">Posts</router-link>
-  <router-link to="/Register">Register</router-link>
-<!-- <router-link to="/about">About</router-link>|
-<router-link to="/groups">Groups</router-link>|
+<div id="nav" >
+| <router-link to="/Home">Home</router-link>|
+  <router-link to="/Posts">Posts</router-link>|
+  <router-link to="/Register">Register</router-link>|
+  <router-link to="/About">About</router-link>|
+<!-- <router-link to="/groups">Groups</router-link>|
 <router-link to="/login">Login/Register</router-link>|
-<router-link to="/user">User Profile</router-link>| -->
+<router-link to="/user">User Profile</router-link>| --> 
 </div>
 </div>
 </header>
@@ -28,8 +28,8 @@ export default {
 background:  #4d4d4d;
 color: #fff;
 text-align: center;
-padding: 10px;
-margin-top:-60px;
+padding: 5px;
+margin-top:-30px;
 line-height: 0px;
 }
 

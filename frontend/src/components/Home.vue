@@ -1,6 +1,8 @@
 <template>
   <div class="home">
+    <h1>User Registration</h1>
   </div>
+</template>
 </template>
 
 <script>
