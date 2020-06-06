@@ -12,6 +12,10 @@ import store from './store/index.js'
 
 Vue.config.productionTip = false
 
+import axios from 'axios'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+axios.defaults.xsrfCookieName = "csrftoken"
+
 new Vue({
   store,
   router,

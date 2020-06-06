@@ -8,6 +8,8 @@ from .serializers import UserSerializer, PostSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import viewsets, status
 from .models import Post
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,7 +29,7 @@ class PostViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
-
+#@csrf_exempt
 def Login_view(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -38,3 +40,9 @@ def Login_view(request):
     else:
         # Return an 'invalid login' error message.
         return (request)
+
+#def Register_view(request):
+#    username = request.POST['username']
+#    password = request.POST['password']
+#    print(username)
+#    return (request)
