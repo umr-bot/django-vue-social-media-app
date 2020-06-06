@@ -29,11 +29,7 @@ export default {
     methods: {
         ...mapActions(['fetchPosts', 'setIsOpen'])
     },
-<<<<<<< HEAD
-    computed: mapGetters(['allPosts', 'allComments']),
-=======
     computed: mapGetters(['allPosts']),
->>>>>>> origin/master
     created() {
         this.fetchPosts();
     }

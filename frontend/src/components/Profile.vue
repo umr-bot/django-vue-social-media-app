@@ -23,6 +23,23 @@
 
 <script>
 export default {
+    name: 'Profile',
+    components: {
+
+  },
+  data() {
+    return{
+      
+    }
+  },
+  methods:{
+      
+
+  },
+  mounted() {
+      axios.get('http://127.0.0.1:8000/api/Profile/'
+
+  },
     
 }
 </script>

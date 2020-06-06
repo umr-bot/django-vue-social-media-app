@@ -38,15 +38,11 @@ export default {
   }, 
   methods: {
     LoginUser() {
-      const headers = {"X-CSRFTOKEN": "CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz"}
-      axios.post("http://127.0.0.1:8000/api-login/login/",
+      axios.post("http://127.0.0.1:8000/auth/",
        {
         username: this.username,
         password: this.password
-       }, 
-       {
-         headers: headers
-         })
+       })
        .then(resp => console.log(resp))
         
 /*       //this.token = resp.data.token;

@@ -16,6 +16,11 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer_class = UserSerializer 
         permission_classes = (AllowAny, )
 
+        @action(detail=True)
+        def get_queryset(self):
+            
+            return self
+
  
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -28,20 +33,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+    @action(detail=True)
     def get_queryset(self):
         if self.action == 'list':
-            return self.queryset.filter(user=self.request.user)
+            return self.queryset.filter(user=self.request.username)
         return self.queryset
 
 
-""" @csrf_exempt
-def Login_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return (request, user.username)
-    else:
-        # Return an 'invalid login' error message.
-        return (request) """
