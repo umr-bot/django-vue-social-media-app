@@ -4,10 +4,10 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .serializers import UserSerializer, PostSerializer
+from .serializers import UserSerializer, PostSerializer, GroupSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import viewsets, status
-from .models import Post
+from .models import Post, Group
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -26,6 +26,13 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+
 
 
 def Login_view(request):

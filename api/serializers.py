@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .models import Post, Profile
+from .models import Post, Profile, Group
 
 # this will handle our backend data, allows python to understand complex data and later can send data to frontend
 # need to make a serializer for every model
@@ -28,3 +28,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('id','image','user')
+        
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id','user')
