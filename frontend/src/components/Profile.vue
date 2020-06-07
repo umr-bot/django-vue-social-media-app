@@ -37,7 +37,10 @@ export default {
 
   },
   mounted() {
-      axios.get('http://127.0.0.1:8000/api/Profile/')
+      axios.get('http://127.0.0.1:8000/api/Profile/',
+      {
+        user_token: this.token
+      })
       .then(resp => {
         
       this.username = resp.username;

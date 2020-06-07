@@ -40,7 +40,7 @@ export default {
   methods: {
     CreateUser() {
       console.log(this.username)
-      axios.post('http://127.0.0.1:8000/api/Register/', {
+      axios.post('http://127.0.0.1:8000/api/User/', {
         username: this.username,
         email: this.email,
         password: this.password

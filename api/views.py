@@ -12,13 +12,17 @@ from .models import Post, Profile
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
-        queryset = User.objects.all()
-        serializer_class = UserSerializer 
-        permission_classes = (AllowAny, )
+    queryset = User.objects.all()
+    serializer_class = UserSerializer 
+    permission_classes = (AllowAny, )
 
-        @action(detail=True)
-        def get_queryset(self):
-            return None
+    @action(detail=True)
+    def get_queryset(self):
+        queryset = User.objects.all()
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(username = username)
+        return queryset
             
 
  
@@ -33,10 +37,12 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    @action(detail=True)
+"""     @action(detail=True)
     def get_queryset(self):
-        if self.action == 'list':
-            return self.queryset.filter(user=self.request.username)
-        return self.queryset
-
+        queryset = Profile.objects.all()
+        username = self.request.query_params.get('username', None)
+        print(username)
+        if username is not None:
+            queryset = queryset.filter(user = username)
+        return queryset """
 

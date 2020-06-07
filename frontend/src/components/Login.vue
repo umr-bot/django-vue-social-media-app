@@ -52,7 +52,7 @@ export default {
       .catch(err => {
         localStorage.removeItem('user-token')
       }),
-      this.$router.push('/Posts')
+      this.$router.push('/Home')
  
     }
   },
