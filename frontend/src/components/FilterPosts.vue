@@ -143,6 +143,7 @@ export default {
         setFilterType(e) {
             const filtType = e.target.options[e.target.options.selectedIndex].innerText;
             this.filterType = filtType
+            this.filterOption = "Select"
         },
         onSubmit(e) {
             e.preventDefault();

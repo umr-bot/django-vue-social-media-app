@@ -16,13 +16,13 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer 
     permission_classes = (AllowAny, )
 
-"""     @action(methods = "GET",detail=True)
+    @action(detail=True)
     def get_queryset(self):
         queryset = User.objects.all()
         username = self.request.query_params.get('username', None)
         if username is not None:
             queryset = queryset.filter(username = username)
-        return queryset """
+        return queryset
              
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -38,7 +38,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     @action(detail=True)
     def get_queryset(self):
         queryset = Profile.objects.all()
-        username = self.request.query_params.get('username', None)
+        username = self.request.query_params.get('user', None)
         print(username)
         if username is not None:
             queryset = queryset.filter(user = username)

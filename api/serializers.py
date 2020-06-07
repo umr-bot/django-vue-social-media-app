@@ -16,9 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data): # we need to assign token to a user to validate user for frontend
         print("this worked")
         user = User.objects.create_user(**validated_data)
-        Token.objects.create(user=user)
-        print("created profile")
         Profile.objects.create(user=user)
+        Token.objects.create(user=user)
         return user
 
 
