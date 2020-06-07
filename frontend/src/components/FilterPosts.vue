@@ -77,6 +77,10 @@ export default {
             {
                 id: 2,
                 cat: "Reviews"
+            },
+            {
+                id: 3,
+                cat: "Sports"
             }
             ],
             Groups_Users: [{

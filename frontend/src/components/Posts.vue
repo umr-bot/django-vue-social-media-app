@@ -3,12 +3,14 @@
       <h3>Posts</h3>
       <div class="posts">
             <div v-for="post in allPosts" :key="post.id" class="post" @click.self="setIsOpen(post.id)">
+                User: {{ post.username }}<br>Location: {{ post.location }} <br><br>
                 Text: {{ post.content }} <br><br>
+                Category: {{ post.category }} <br><br>
                 <div class="comments">
                     <AddComment :parentData="post.id" /> <br>
                     <transition-group name="fade">
                         <div v-for="comment in post.comments" :key="comment.id">
-                            <p v-if="comment.isOpen == true"> {{comment.content}} </p>
+                            <p v-if="comment.isOpen == true"> Comment: {{comment.content}} </p>
                         </div>
                     </transition-group>
                 </div>
@@ -34,6 +36,7 @@ export default {
         this.fetchPosts();
     }
 }
+
 </script>
 
 <style scoped>

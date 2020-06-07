@@ -4,10 +4,10 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .serializers import UserSerializer, PostSerializer
+from .serializers import UserSerializer, PostSerializer, CommentSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import viewsets, status
-from .models import Post
+from .models import Post, Comment
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,7 +19,11 @@ class UserViewSet(viewsets.ModelViewSet):
             if request.user.is_authenticated:
                 return Response(request.user.username)
 
-
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .models import Post, Profile
+from .models import Post, Profile, Comment
 
 # this will handle our backend data, allows python to understand complex data and later can send data to frontend
 # need to make a serializer for every model
@@ -18,11 +18,15 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)
         return user
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id','content','user','isOpen']
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('id','content','user')           
+        fields = ['id','content','user','comments','time','location','groupid','category','username']
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

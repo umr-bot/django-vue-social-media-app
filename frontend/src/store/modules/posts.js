@@ -1,59 +1,8 @@
 import axios from "axios";
 
 const state = {
-    posts: [{
-        user: 1,
-        time: 0,
-        location: 'Cape Town',
-        id: 1,
-        groupid: null,
-        content: 'Post 2',
-        comments: [{
-            id: 3,
-            content: 'Comment 3',
-            isOpen: false,
-            user: 1
-        },
-        {
-            id: 2,
-            content: 'Comment 2',
-            isOpen: false,
-            user: 1
-        },
-        {
-            id: 1,
-            content: 'Comment 1',
-            isOpen: false,
-            user: 1
-        }
-        ],
-        category: null
-    },
-    {
-        id: 2,
-        content: 'Post 1',
-        user: 1,
-        comments: [{
-            id: 3,
-            content: 'Comment 3',
-            isOpen: false,
-            user: 1
-        },
-        {
-            id: 2,
-            content: 'Comment 2',
-            isOpen: false,
-            user: 1
-        },
-        {
-            id: 1,
-            content: 'Comment 1',
-            isOpen: false,
-            user: 1
-        }
-        ]
-    }
-    ]
+    posts: [],
+    comments: []
 };
 
 const getters = {
@@ -63,18 +12,23 @@ const getters = {
 const actions = {
 
     async fetchPosts({ commit }) {
-        //const response = await axios.get("http://127.0.0.1:8000/api/Post/"); // TODO: setup backend to work with this part
+        const response1 = await axios.get("http://127.0.0.1:8000/api/Post/"); // TODO: setup backend to work with this part
+        const posts = response1.data.results
 
-        commit('setPosts', state.posts);
+        const response2 = await axios.get("http://127.0.0.1:8000/api/Comment/"); // TODO: setup backend to work with this part
+        const comms = response2.data.results
+
+        commit('setPosts', {posts, comms});
     },
 
-    async addPost({ commit }, {user, content, location, category, groupID}) {
-        //const response = await axios.post('https://jsonplaceholder.typicode.com/posts', { title, body }); // TODO: setup backend to work with this part
+    async addPost({ commit }, {user, content, location, category, groupID, username}) {
+
+        //const response = await axios.post('http://127.0.0.1:8000/api/Post/', {newPost}); // TODO: setup backend to work with this part
 
         const now = new Date();
         var time = now.getTime();
         commit('incrementPostIDs')
-        commit('newPost', {user, content, time, location, category, groupID})
+        commit('newPost', {user, content, time, location, category, groupID, username})
     },
 
     async filterPosts({ commit }, {filterType, filterOption}) {
@@ -84,7 +38,7 @@ const actions = {
         //const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_filter=${filterType}'); // TODO: setup backend to work with this part
 
         commit('sortPostsBy', {filterType, filterOption})
-        commit('setPosts', state.posts);
+        //TODO: filter local posts //commit('setPosts', {posts: state.posts, comms: state.comments});
     },
 
     async setIsOpen ({ commit }, id) {
@@ -99,23 +53,53 @@ const actions = {
 const mutations = {
 
     changeIsOpen: (state, id) => {
-        for (let i = 0; i < state.posts[id-1].comments.length; i++) {
-            state.posts[id-1].comments[i].isOpen = !state.posts[id-1].comments[i].isOpen
+        for (let i = 0; i < state.posts[state.posts[0].id - id].comments.length; i++) {
+            state.posts[state.posts[0].id - id].comments[i].isOpen = !state.posts[state.posts[0].id - id].comments[i].isOpen
         }
     },
 
-    setPosts: (state, posts) => (state.posts = posts),
+    setPosts: (state, {posts, comms}) => {
 
-    newPost: (state, {user, content, time, location, category, groupID}) => {
+        const createdPostsTemp = posts
+
+        for (let i = 0; i < posts.length; i++) {
+            if(posts[i].comments.length != 0) {
+                for (let j = 0; j < posts[i].comments.length; j++) {
+                    for (let k = 0; k < comms.length; k++) {
+                        if(posts[i].comments[j] === comms[k].id){
+                            createdPostsTemp[i].comments[j] = comms[k]
+                        }
+                    }
+                }
+            }
+        }
+
+        const createdPosts = []
+        for (let i = 0; i < createdPostsTemp.length; i++) {
+            createdPosts.unshift(createdPostsTemp[i])
+        }
+
+        state.posts = createdPosts
+        state.comments = comms
+
+    },
+
+    newPost: (state, {user, content, time, location, category, groupID, username}) => {
         const post = {
             user: user,
-            id : 1,
+            username: username,
+            id : state.posts[0].id + 1,
             content: content,
             time: time,
             location: location,
             category: category,
             groupid: groupID,
-            comments: []
+            comments: [{
+                id: 8,
+                content: "---------------------------------",
+                isOpen: false,
+                user: 6
+            }]
         };
         state.posts.unshift(post);
     },
@@ -127,21 +111,25 @@ const mutations = {
     },
 
     plusComment: (state, {content, postID, user}) => {
-        var indx = 1;
         var postIsOpen = false;
-        for (let i = 0; i < state.posts[postID-1].comments.length; i++) {
-            indx = i + 2
-            if (state.posts[postID-1].comments[i].isOpen == true) {
+        for (let i = 0; i < state.posts[state.posts[0].id - postID].comments.length; i++) {
+            if (state.posts[state.posts[0].id - postID].comments[i].isOpen == true) {
                 postIsOpen = true
             }
         }
+
+        var indx = 0
+        for (let i = 0; i < state.comments.length; i++) {
+            indx = state.comments[i].id
+        }
+
         const comment = {
-            id: indx,
+            id: indx + 1,
             content: content,
             isOpen: postIsOpen,
             user: user
         };
-        state.posts[postID-1].comments.unshift(comment);
+        state.posts[state.posts[0].id - postID].comments.unshift(comment);
     },
 
     sortPostsBy: (state, {filterType, filterOption}) => {
