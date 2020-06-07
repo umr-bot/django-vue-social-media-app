@@ -6,7 +6,7 @@ import Home from '../views/Home.vue'
 import Groups from '../views/Groups.vue'
 import Register from '../components/Register.vue'
 import Login from '../components/Login.vue'
-import Profile from '../views/Profile.vue'
+import Profile from '../components/Profile.vue'
 import Logout from '../components/Logout.vue'
 
 Vue.use(VueRouter)
@@ -47,7 +47,7 @@ Vue.use(VueRouter)
 
   },
   {
-    path: '/user',
+    path: '/Profile',
     name: 'Profile',
     component: Profile
   }
